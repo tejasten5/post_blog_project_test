@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body> 
+      
+    <form action="" method="POST">
+        {% csrf_token %}                 
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4">
+                   
+                    {% for field in form %}
+                    <label for="">{{field.label}}</label>
+                    <input type="{{field.field.widget.input_type}}" {% if field.value !=  None %} value="{{field.value}}" {% else %} placeholder="Enter {{field.label}}" {% endif %} class="form-control" name="{{field.name}}" id="{{field.auto_id}}">            
+                        <span style="color: red;">{{field.errors|striptags}}</span><br>
+                    {% endfor %}                        
+                    <button type="submit" class="btn btn-info" id="btn_submit">Register</button>
+                </div>
+                <div class="col-4"></div>
+
+            </div>
+        
+    </form>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
